@@ -47,6 +47,14 @@ function showMessage(elementId, text, type) {
   el.style.display = "block";
 }
 
+function getUsers() {
+  return JSON.parse(localStorage.getItem("engineeringUsers")) || [];
+}
+
+function saveUsers(users) {
+  localStorage.setItem("engineeringUsers", JSON.stringify(users));
+}
+
 function generateCode() {
   return Math.floor(100000 + Math.random() * 900000).toString();
 }
@@ -73,8 +81,10 @@ async function sendVerificationCode() {
   isSending = true;
 
   const btn = document.querySelector(".send-code-btn");
-  btn.textContent = "Sending...";
-  btn.disabled = true;
+  if (btn) {
+    btn.textContent = "Sending...";
+    btn.disabled = true;
+  }
 
   try {
     await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
@@ -98,10 +108,11 @@ async function sendVerificationCode() {
     );
   }
 
-  // Reset button after 3 seconds
   setTimeout(() => {
-    btn.textContent = "Send Code";
-    btn.disabled = false;
+    if (btn) {
+      btn.textContent = "Send Code";
+      btn.disabled = false;
+    }
     isSending = false;
   }, 3000);
 }
@@ -157,7 +168,7 @@ function registerUser() {
     return;
   }
 
-  const users = JSON.parse(localStorage.getItem("engineeringUsers")) || [];
+  const users = getUsers();
 
   if (users.find((u) => u.email === email)) {
     showMessage("registerMessage", "Email already registered.", "error");
@@ -165,7 +176,7 @@ function registerUser() {
   }
 
   users.push({ name, email, course, password, verified: true });
-  localStorage.setItem("engineeringUsers", JSON.stringify(users));
+  saveUsers(users);
 
   showMessage("registerMessage", "Registration successful!", "success");
 
@@ -194,7 +205,7 @@ function loginUser() {
     return;
   }
 
-  const users = JSON.parse(localStorage.getItem("engineeringUsers")) || [];
+  const users = getUsers();
   const user = users.find((u) => u.email === email && u.password === password);
 
   if (!user) {
@@ -210,16 +221,37 @@ function loadDashboard() {
   const user = JSON.parse(localStorage.getItem("loggedInEngineeringUser"));
   if (!user) return;
 
+  document.body.classList.add("dashboard-mode");
+
   document.getElementById("authArea").style.display = "none";
   document.getElementById("dashboard").classList.add("active");
 
-  document.getElementById("welcomeText").textContent = `Welcome, ${user.name}!`;
-  document.getElementById("studentInfo").textContent =
-    `You are enrolled as a ${user.course} student.`;
+  const welcomeText = document.getElementById("welcomeText");
+  const studentInfo = document.getElementById("studentInfo");
+  const verifiedStatus = document.getElementById("verifiedStatus");
+  const studentCourseText = document.getElementById("studentCourseText");
+
+  if (welcomeText) {
+    welcomeText.textContent = `Welcome, ${user.name}!`;
+  }
+
+  if (studentInfo) {
+    studentInfo.textContent = `You are enrolled as a ${user.course} student. Access your study dashboard below.`;
+  }
+
+  if (verifiedStatus) {
+    verifiedStatus.textContent = user.verified ? "Verified" : "Pending";
+  }
+
+  if (studentCourseText) {
+    studentCourseText.textContent = user.course || "---";
+  }
 }
 
 function logoutUser() {
   localStorage.removeItem("loggedInEngineeringUser");
+
+  document.body.classList.remove("dashboard-mode");
 
   document.getElementById("dashboard").classList.remove("active");
   document.getElementById("authArea").style.display = "block";
@@ -228,6 +260,16 @@ function logoutUser() {
   document.getElementById("loginPassword").value = "";
 
   clearMessages();
+
+  const buttons = document.querySelectorAll(".tab-btn");
+  buttons.forEach((button) => button.classList.remove("active"));
+
+  if (buttons[0]) {
+    buttons[0].classList.add("active");
+  }
+
+  document.getElementById("register").classList.remove("active");
+  document.getElementById("login").classList.add("active");
 }
 
 function togglePassword(inputId, button) {

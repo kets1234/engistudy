@@ -114,6 +114,16 @@
                 </button>
               </div>
 
+              <div class="forgot-row">
+                <button
+                  type="button"
+                  class="forgot-link"
+                  onclick="forgotPassword()"
+                >
+                  Forgot Password?
+                </button>
+              </div>
+
               <button class="continue-btn" onclick="loginUser()">
                 <span>CONTINUE</span>
                 <i class="fa-solid fa-arrow-right"></i>
@@ -298,63 +308,78 @@
               </div>
 
               <div class="courses-grid improved-courses-grid">
-                <div class="course-card">
+                <div
+                  class="course-card available-course"
+                  onclick="openCourse('math')"
+                >
                   <div class="course-icon">
                     <i class="fa-solid fa-square-root-variable"></i>
                   </div>
+                  <div class="course-status available-status">Available</div>
                   <h4>Engineering Mathematics</h4>
                   <p>
                     Calculus, algebra, differential equations, and computations.
                   </p>
                 </div>
 
-                <div class="course-card">
+                <div class="course-card coming-soon-course">
                   <div class="course-icon">
                     <i class="fa-solid fa-ruler-combined"></i>
                   </div>
+                  <div class="course-status coming-status">Coming Soon</div>
                   <h4>Strength of Materials</h4>
                   <p>
-                    Stress, strain, torsion, bending, and material behavior.
+                    This subject is not yet available. Please check back soon
+                    for updates.
                   </p>
                 </div>
 
-                <div class="course-card">
+                <div class="course-card coming-soon-course">
                   <div class="course-icon">
                     <i class="fa-solid fa-water"></i>
                   </div>
+                  <div class="course-status coming-status">Coming Soon</div>
                   <h4>Fluid Mechanics</h4>
                   <p>
-                    Pressure, flow, continuity, Bernoulli equation, and pipes.
+                    This subject is not yet available. Please check back soon
+                    for updates.
                   </p>
                 </div>
 
-                <div class="course-card">
+                <div class="course-card coming-soon-course">
                   <div class="course-icon">
                     <i class="fa-solid fa-bolt"></i>
                   </div>
+                  <div class="course-status coming-status">Coming Soon</div>
                   <h4>Circuit Analysis</h4>
                   <p>
-                    Ohm’s law, Kirchhoff’s laws, AC/DC circuits, and network
-                    theorems.
+                    This subject is not yet available. Please check back soon
+                    for updates.
                   </p>
                 </div>
 
-                <div class="course-card">
+                <div class="course-card coming-soon-course">
                   <div class="course-icon">
                     <i class="fa-solid fa-fire-flame-curved"></i>
                   </div>
+                  <div class="course-status coming-status">Coming Soon</div>
                   <h4>Thermodynamics</h4>
                   <p>
-                    Energy, entropy, heat transfer, cycles, and applications.
+                    This subject is not yet available. Please check back soon
+                    for updates.
                   </p>
                 </div>
 
-                <div class="course-card">
+                <div class="course-card coming-soon-course">
                   <div class="course-icon">
                     <i class="fa-solid fa-building"></i>
                   </div>
+                  <div class="course-status coming-status">Coming Soon</div>
                   <h4>Structural Analysis</h4>
-                  <p>Beams, trusses, reactions, shear, and moment diagrams.</p>
+                  <p>
+                    This subject is not yet available. Please check back soon
+                    for updates.
+                  </p>
                 </div>
               </div>
             </div>

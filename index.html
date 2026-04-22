@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EngiStudy Portal</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    ></script>
+  </head>
+  <body>
+    <div class="page-bg">
+      <div class="bg-circle bg-circle-1"></div>
+      <div class="bg-circle bg-circle-2"></div>
+      <div class="bg-circle bg-circle-3"></div>
+
+      <div class="main-card">
+        <section class="left-panel">
+          <div class="logo-wrap">
+            <div class="custom-logo">
+              <div class="gear-ring">
+                <i class="fa-solid fa-gear"></i>
+              </div>
+              <div class="logo-center">
+                <i class="fa-solid fa-building-columns"></i>
+              </div>
+            </div>
+
+            <div class="logo-text-wrap">
+              <h2 class="brand-title">ENGI<span>STUDY</span></h2>
+              <p class="brand-subtitle">ENGINEERING LEARNING PORTAL</p>
+            </div>
+          </div>
+
+          <div class="blob blob-top-right"></div>
+          <div class="blob blob-left-side"></div>
+          <div class="blob blob-bottom-wave"></div>
+
+          <div class="orb orb-blue-big"></div>
+          <div class="orb orb-pink-small"></div>
+          <div class="orb orb-blue-mid"></div>
+          <div class="orb orb-pink-bottom"></div>
+          <div class="orb orb-pink-right"></div>
+
+          <div class="left-content">
+            <h1>Welcome Page</h1>
+
+            <div class="mini-accent">
+              <span class="line-pink"></span>
+              <span class="line-white"></span>
+            </div>
+
+            <p>
+              Sign in to continue and access your engineering courses, materials
+              and more.
+            </p>
+          </div>
+
+          <div class="site-link">
+            <div class="site-icon">
+              <i class="fa-solid fa-globe"></i>
+            </div>
+            <span>www.engistudy.com</span>
+          </div>
+        </section>
+
+        <section class="right-panel">
+          <div id="authArea">
+            <div class="tabs">
+              <button class="tab-btn active" onclick="showTab('login', this)">
+                Sign In
+              </button>
+              <button class="tab-btn" onclick="showTab('register', this)">
+                Register
+              </button>
+            </div>
+
+            <div id="login" class="form-section active">
+              <h2>Sign In</h2>
+              <p class="subtitle">Welcome back! Please sign in to continue.</p>
+
+              <div class="input-box">
+                <span class="input-icon">
+                  <i class="fa-regular fa-envelope"></i>
+                </span>
+                <input
+                  type="email"
+                  id="loginEmail"
+                  placeholder="Email Address"
+                />
+              </div>
+
+              <div class="input-box password-box">
+                <span class="input-icon">
+                  <i class="fa-solid fa-lock"></i>
+                </span>
+                <input
+                  type="password"
+                  id="loginPassword"
+                  placeholder="Password"
+                />
+                <button
+                  type="button"
+                  class="eye-btn"
+                  onclick="togglePassword('loginPassword', this)"
+                >
+                  <i class="fa-regular fa-eye"></i>
+                </button>
+              </div>
+
+              <button class="continue-btn" onclick="loginUser()">
+                <span>CONTINUE</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+
+              <div id="loginMessage" class="message"></div>
+            </div>
+
+            <div id="register" class="form-section">
+              <h2>Create Account</h2>
+              <p class="subtitle">
+                Register to start studying engineering courses.
+              </p>
+
+              <div class="input-box">
+                <span class="input-icon">
+                  <i class="fa-regular fa-user"></i>
+                </span>
+                <input type="text" id="regName" placeholder="Full Name" />
+              </div>
+
+              <div class="input-box">
+                <span class="input-icon">
+                  <i class="fa-regular fa-envelope"></i>
+                </span>
+                <input type="email" id="regEmail" placeholder="Email Address" />
+              </div>
+
+              <div class="verify-row">
+                <div class="input-box verify-email-box">
+                  <span class="input-icon">
+                    <i class="fa-solid fa-shield-halved"></i>
+                  </span>
+                  <input
+                    type="text"
+                    id="verificationCode"
+                    placeholder="Verification Code"
+                  />
+                </div>
+
+                <button
+                  type="button"
+                  class="send-code-btn"
+                  onclick="sendVerificationCode()"
+                >
+                  Send Code
+                </button>
+              </div>
+
+              <div class="input-box select-box">
+                <span class="input-icon">
+                  <i class="fa-solid fa-graduation-cap"></i>
+                </span>
+                <select id="regCourse">
+                  <option value="">Engineering Program</option>
+                  <option value="Civil Engineering">Civil Engineering</option>
+                  <option value="Mechanical Engineering">
+                    Mechanical Engineering
+                  </option>
+                  <option value="Electrical Engineering">
+                    Electrical Engineering
+                  </option>
+                  <option value="Electronics Engineering">
+                    Electronics Engineering
+                  </option>
+                  <option value="Computer Engineering">
+                    Computer Engineering
+                  </option>
+                </select>
+              </div>
+
+              <div class="input-box password-box">
+                <span class="input-icon">
+                  <i class="fa-solid fa-lock"></i>
+                </span>
+                <input
+                  type="password"
+                  id="regPassword"
+                  placeholder="Password"
+                />
+                <button
+                  type="button"
+                  class="eye-btn"
+                  onclick="togglePassword('regPassword', this)"
+                >
+                  <i class="fa-regular fa-eye"></i>
+                </button>
+              </div>
+
+              <div class="input-box password-box">
+                <span class="input-icon">
+                  <i class="fa-solid fa-lock"></i>
+                </span>
+                <input
+                  type="password"
+                  id="regConfirmPassword"
+                  placeholder="Confirm Password"
+                />
+                <button
+                  type="button"
+                  class="eye-btn"
+                  onclick="togglePassword('regConfirmPassword', this)"
+                >
+                  <i class="fa-regular fa-eye"></i>
+                </button>
+              </div>
+
+              <button class="continue-btn" onclick="registerUser()">
+                <span>REGISTER</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+
+              <div id="registerMessage" class="message"></div>
+            </div>
+          </div>
+
+          <div id="dashboard" class="dashboard">
+            <div class="welcome-box">
+              <h3 id="welcomeText">Welcome!</h3>
+              <p id="studentInfo"></p>
+            </div>
+
+            <h2>Available Study Courses</h2>
+            <p class="subtitle">Choose a subject you want to review.</p>
+
+            <div class="courses-grid">
+              <div class="course-card">
+                <h4>Engineering Mathematics</h4>
+                <p>
+                  Calculus, algebra, differential equations, and computations.
+                </p>
+              </div>
+              <div class="course-card">
+                <h4>Strength of Materials</h4>
+                <p>Stress, strain, torsion, bending, and material behavior.</p>
+              </div>
+              <div class="course-card">
+                <h4>Fluid Mechanics</h4>
+                <p>
+                  Pressure, flow, continuity, Bernoulli equation, and pipes.
+                </p>
+              </div>
+              <div class="course-card">
+                <h4>Circuit Analysis</h4>
+                <p>
+                  Ohm’s law, Kirchhoff’s laws, AC/DC circuits, and network
+                  theorems.
+                </p>
+              </div>
+              <div class="course-card">
+                <h4>Thermodynamics</h4>
+                <p>Energy, entropy, heat transfer, cycles, and applications.</p>
+              </div>
+              <div class="course-card">
+                <h4>Structural Analysis</h4>
+                <p>Beams, trusses, reactions, shear, and moment diagrams.</p>
+              </div>
+            </div>
+
+            <button class="logout-btn" onclick="logoutUser()">Logout</button>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

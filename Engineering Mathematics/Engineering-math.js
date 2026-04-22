@@ -1,3 +1,9 @@
+document.body.style.opacity = "0";
+
+window.addEventListener("load", function () {
+  document.body.style.transition = "opacity 0.25s ease";
+  document.body.style.opacity = "1";
+});
 const topicMap = {
   algebra: [
     "Exponents, radicals, and polynomial operations",

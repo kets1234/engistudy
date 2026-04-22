@@ -1,6 +1,7 @@
 const EMAILJS_PUBLIC_KEY = "WbGc32kxsy0sXIJ3e";
 const EMAILJS_SERVICE_ID = "service_5n9ckkt";
 const EMAILJS_TEMPLATE_ID = "template_0qftjbc";
+const EMAILJS_FORGOT_TEMPLATE_ID = "template_nolrj0e";
 
 let generatedVerificationCode = "";
 let verifiedEmailAddress = "";
@@ -42,6 +43,7 @@ function clearMessages() {
 
 function showMessage(elementId, text, type) {
   const el = document.getElementById(elementId);
+  if (!el) return;
   el.textContent = text;
   el.className = "message " + type;
   el.style.display = "block";
@@ -57,6 +59,16 @@ function saveUsers(users) {
 
 function generateCode() {
   return Math.floor(100000 + Math.random() * 900000).toString();
+}
+
+function generateResetToken() {
+  if (window.crypto && crypto.randomUUID) {
+    return crypto.randomUUID();
+  }
+
+  return (
+    "reset_" + Math.random().toString(36).slice(2) + Date.now().toString(36)
+  );
 }
 
 async function sendVerificationCode() {
@@ -103,7 +115,7 @@ async function sendVerificationCode() {
 
     showMessage(
       "registerMessage",
-      "Failed to send code. Open browser console (F12) to see the exact EmailJS error.",
+      "Failed to send code. Open browser console (F12).",
       "error",
     );
   }
@@ -115,6 +127,73 @@ async function sendVerificationCode() {
     }
     isSending = false;
   }, 3000);
+}
+
+async function forgotPassword() {
+  clearMessages();
+
+  const email = document
+    .getElementById("loginEmail")
+    .value.trim()
+    .toLowerCase();
+
+  if (!email) {
+    showMessage("loginMessage", "Enter your email first.", "error");
+    return;
+  }
+
+  if (typeof emailjs === "undefined") {
+    showMessage("loginMessage", "EmailJS not loaded.", "error");
+    return;
+  }
+
+  const users = getUsers();
+  const user = users.find((u) => u.email === email);
+
+  if (!user) {
+    showMessage("loginMessage", "No account found for that email.", "error");
+    return;
+  }
+
+  const resetToken = generateResetToken();
+  const expiresAt = Date.now() + 60 * 60 * 1000;
+
+  const resetRequests =
+    JSON.parse(localStorage.getItem("engineeringPasswordResets")) || {};
+
+  resetRequests[resetToken] = {
+    email: user.email,
+    expiresAt,
+  };
+
+  localStorage.setItem(
+    "engineeringPasswordResets",
+    JSON.stringify(resetRequests),
+  );
+
+  const baseUrl = window.location.href.replace(/[^/]*$/, "");
+  const resetLink = `${baseUrl}reset-password.html?token=${encodeURIComponent(resetToken)}`;
+
+  try {
+    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_FORGOT_TEMPLATE_ID, {
+      email: email,
+      link: resetLink,
+    });
+
+    showMessage(
+      "loginMessage",
+      "Password reset link sent to your email.",
+      "success",
+    );
+  } catch (error) {
+    console.error("Forgot Password Error:", error);
+
+    showMessage(
+      "loginMessage",
+      "Failed to send reset email. Check EmailJS template.",
+      "error",
+    );
+  }
 }
 
 function registerUser() {
@@ -226,18 +305,12 @@ function loadDashboard() {
   document.getElementById("authArea").style.display = "none";
   document.getElementById("dashboard").classList.add("active");
 
-  const welcomeText = document.getElementById("welcomeText");
-  const studentInfo = document.getElementById("studentInfo");
+  document.getElementById("welcomeText").textContent = `Welcome, ${user.name}!`;
+  document.getElementById("studentInfo").textContent =
+    `You are enrolled as a ${user.course} student.`;
+
   const verifiedStatus = document.getElementById("verifiedStatus");
   const studentCourseText = document.getElementById("studentCourseText");
-
-  if (welcomeText) {
-    welcomeText.textContent = `Welcome, ${user.name}!`;
-  }
-
-  if (studentInfo) {
-    studentInfo.textContent = `You are enrolled as a ${user.course} student. Access your study dashboard below.`;
-  }
 
   if (verifiedStatus) {
     verifiedStatus.textContent = user.verified ? "Verified" : "Pending";
@@ -264,9 +337,7 @@ function logoutUser() {
   const buttons = document.querySelectorAll(".tab-btn");
   buttons.forEach((button) => button.classList.remove("active"));
 
-  if (buttons[0]) {
-    buttons[0].classList.add("active");
-  }
+  if (buttons[0]) buttons[0].classList.add("active");
 
   document.getElementById("register").classList.remove("active");
   document.getElementById("login").classList.add("active");
@@ -282,5 +353,15 @@ function togglePassword(inputId, button) {
   } else {
     input.type = "password";
     icon.classList.replace("fa-eye-slash", "fa-eye");
+  }
+}
+/* ================= OPEN COURSE ================= */
+function openCourse(course) {
+  if (course === "math") {
+    // 🔥 TEMP ACTION (you can replace later)
+    alert("Opening Engineering Mathematics...");
+
+    // 👉 future:
+    // window.location.href = "math.html";
   }
 }

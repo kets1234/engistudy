@@ -231,49 +231,133 @@
           </div>
 
           <div id="dashboard" class="dashboard">
-            <div class="welcome-box">
-              <h3 id="welcomeText">Welcome!</h3>
-              <p id="studentInfo"></p>
+            <div class="dashboard-topbar">
+              <div>
+                <p class="dashboard-label">Student Dashboard</p>
+                <h2 id="welcomeText">Welcome!</h2>
+                <p id="studentInfo" class="dashboard-subtext"></p>
+              </div>
+
+              <button class="logout-btn top-logout-btn" onclick="logoutUser()">
+                Logout
+              </button>
             </div>
 
-            <h2>Available Study Courses</h2>
-            <p class="subtitle">Choose a subject you want to review.</p>
-
-            <div class="courses-grid">
-              <div class="course-card">
-                <h4>Engineering Mathematics</h4>
-                <p>
-                  Calculus, algebra, differential equations, and computations.
-                </p>
-              </div>
-              <div class="course-card">
-                <h4>Strength of Materials</h4>
-                <p>Stress, strain, torsion, bending, and material behavior.</p>
-              </div>
-              <div class="course-card">
-                <h4>Fluid Mechanics</h4>
-                <p>
-                  Pressure, flow, continuity, Bernoulli equation, and pipes.
-                </p>
-              </div>
-              <div class="course-card">
-                <h4>Circuit Analysis</h4>
-                <p>
-                  Ohm’s law, Kirchhoff’s laws, AC/DC circuits, and network
-                  theorems.
-                </p>
-              </div>
-              <div class="course-card">
-                <h4>Thermodynamics</h4>
-                <p>Energy, entropy, heat transfer, cycles, and applications.</p>
-              </div>
-              <div class="course-card">
-                <h4>Structural Analysis</h4>
-                <p>Beams, trusses, reactions, shear, and moment diagrams.</p>
+            <div class="dashboard-hero">
+              <div class="hero-card">
+                <div class="hero-left">
+                  <p class="hero-small">Engineering Learning Portal</p>
+                  <h3>Continue Your Study Journey</h3>
+                  <p>
+                    Access your engineering subjects, monitor your account, and
+                    review your progress in one place.
+                  </p>
+                </div>
+                <div class="hero-badge">
+                  <i class="fa-solid fa-user-graduate"></i>
+                </div>
               </div>
             </div>
 
-            <button class="logout-btn" onclick="logoutUser()">Logout</button>
+            <div class="stats-grid">
+              <div class="stat-card">
+                <div class="stat-icon">
+                  <i class="fa-solid fa-book-open"></i>
+                </div>
+                <div>
+                  <h4>6</h4>
+                  <p>Available Courses</p>
+                </div>
+              </div>
+
+              <div class="stat-card">
+                <div class="stat-icon">
+                  <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <div>
+                  <h4 id="verifiedStatus">Verified</h4>
+                  <p>Account Status</p>
+                </div>
+              </div>
+
+              <div class="stat-card">
+                <div class="stat-icon">
+                  <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div>
+                  <h4 id="studentCourseText">---</h4>
+                  <p>Program</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="dashboard-section">
+              <div class="section-header">
+                <h3>My Courses</h3>
+                <span class="section-tag">Study Modules</span>
+              </div>
+
+              <div class="courses-grid improved-courses-grid">
+                <div class="course-card">
+                  <div class="course-icon">
+                    <i class="fa-solid fa-square-root-variable"></i>
+                  </div>
+                  <h4>Engineering Mathematics</h4>
+                  <p>
+                    Calculus, algebra, differential equations, and computations.
+                  </p>
+                </div>
+
+                <div class="course-card">
+                  <div class="course-icon">
+                    <i class="fa-solid fa-ruler-combined"></i>
+                  </div>
+                  <h4>Strength of Materials</h4>
+                  <p>
+                    Stress, strain, torsion, bending, and material behavior.
+                  </p>
+                </div>
+
+                <div class="course-card">
+                  <div class="course-icon">
+                    <i class="fa-solid fa-water"></i>
+                  </div>
+                  <h4>Fluid Mechanics</h4>
+                  <p>
+                    Pressure, flow, continuity, Bernoulli equation, and pipes.
+                  </p>
+                </div>
+
+                <div class="course-card">
+                  <div class="course-icon">
+                    <i class="fa-solid fa-bolt"></i>
+                  </div>
+                  <h4>Circuit Analysis</h4>
+                  <p>
+                    Ohm’s law, Kirchhoff’s laws, AC/DC circuits, and network
+                    theorems.
+                  </p>
+                </div>
+
+                <div class="course-card">
+                  <div class="course-icon">
+                    <i class="fa-solid fa-fire-flame-curved"></i>
+                  </div>
+                  <h4>Thermodynamics</h4>
+                  <p>
+                    Energy, entropy, heat transfer, cycles, and applications.
+                  </p>
+                </div>
+
+                <div class="course-card">
+                  <div class="course-icon">
+                    <i class="fa-solid fa-building"></i>
+                  </div>
+                  <h4>Structural Analysis</h4>
+                  <p>Beams, trusses, reactions, shear, and moment diagrams.</p>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       </div>

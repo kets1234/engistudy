@@ -358,10 +358,10 @@ function togglePassword(inputId, button) {
 /* ================= OPEN COURSE ================= */
 function openCourse(course) {
   if (course === "math") {
-    // 🔥 TEMP ACTION (you can replace later)
-    alert("Opening Engineering Mathematics...");
+    document.body.classList.add("page-transition");
 
-    // 👉 future:
-    // window.location.href = "math.html";
+    setTimeout(() => {
+      window.location.href = "Engineering Mathematics/Engineering-math.html";
+    }, 250);
   }
 }

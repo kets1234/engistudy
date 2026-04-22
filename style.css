@@ -1020,3 +1020,10 @@ body.dashboard-mode .courses-grid {
   transform: none;
   box-shadow: none;
 }
+body {
+  transition: opacity 0.25s ease;
+}
+
+body.page-transition {
+  opacity: 0;
+}

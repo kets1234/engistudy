@@ -930,3 +930,93 @@ body.dashboard-mode .courses-grid {
     align-items: flex-start;
   }
 }
+/* FORGOT PASSWORD */
+.forgot-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -6px;
+  margin-bottom: 10px;
+}
+
+.forgot-link {
+  border: none;
+  background: transparent;
+  color: #6c39f2;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+}
+
+.forgot-link:hover {
+  color: #ff34c5;
+  text-decoration: underline;
+}
+.forgot-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -6px;
+  margin-bottom: 10px;
+}
+
+.forgot-link {
+  border: none;
+  background: transparent;
+  color: #6c39f2;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+}
+
+.forgot-link:hover {
+  color: #ff34c5;
+  text-decoration: underline;
+}
+.course-status {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.available-status {
+  background: #e8f9ec;
+  color: #1a7e34;
+}
+
+.coming-status {
+  background: #fff1f3;
+  color: #d63384;
+}
+
+.coming-soon-course {
+  opacity: 0.9;
+}
+
+.coming-soon-course .course-icon {
+  background: linear-gradient(90deg, #b07cff 0%, #ff7bd5 100%);
+}
+/* CLICKABLE COURSE */
+.available-course {
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.available-course:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(92, 52, 242, 0.15);
+}
+
+/* DISABLED COURSES */
+.coming-soon-course {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.coming-soon-course:hover {
+  transform: none;
+  box-shadow: none;
+}

@@ -6,10 +6,14 @@ window.addEventListener("load", function () {
 });
 const topicMap = {
   algebra: [
-    "Exponents, radicals, and polynomial operations",
-    "Factoring techniques and solving algebraic equations",
-    "Linear and quadratic equations in engineering contexts",
-    "Inequalities and algebraic manipulation",
+    algebra: [
+    "Index Laws",
+    "Special Products",
+    "Binomial Expansion",
+    "Factoring",
+    "Rational Expressions Radicals",
+    "Complex Numbers",
+    "Functions and Graphs"
   ],
   functions: [
     "Domain and range of common functions",

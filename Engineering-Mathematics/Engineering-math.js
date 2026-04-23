@@ -13,7 +13,16 @@ const topicMap = {
     "Factoring",
     "Rational Expressions Radicals",
     "Complex Numbers",
-    "Functions and Graphs"
+    "Functions and Graphs",
+    "Logarithmic Functions",
+    "Linear Equation in one variable",
+    "Different methods of solving linear equations",
+    "Systems of linear equation",
+    "Application of linear equation and two variables",
+    "Quadratic Equation",
+    "Applications of Quadratic Equation",
+    "Partial Fraction Decomposition",
+    "Ratio, Proportion, and Variations"
   ],
   functions: [
     "Domain and range of common functions",

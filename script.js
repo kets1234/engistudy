@@ -361,7 +361,7 @@ function openCourse(course) {
     document.body.classList.add("page-transition");
 
     setTimeout(() => {
-      window.location.href = "Engineering Mathematics/Engineering-math.html";
+      window.location.href = "engineering-math.html";
     }, 250);
   }
 }

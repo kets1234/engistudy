@@ -29,6 +29,13 @@ const topicMap = {
     "Basic substitution idea",
     "Simple applications of integration in engineering",
   ],
+  diffeq: [
+    "Introduction to differential equations",
+    "Separable differential equations",
+    "First-order linear equations",
+    "Second-order differential equations",
+    "Applications in engineering systems",
+  ],
 };
 
 function showTopic(moduleKey) {
